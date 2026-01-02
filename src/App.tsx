@@ -151,7 +151,13 @@ function App() {
       {/* Footer */}
       <footer className="mt-auto py-8 bg-white border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-6 text-center text-sm text-gray-400">
-          Dormitory Area Standard Calculator &copy; 2024
+          <p>Dormitory Area Standard Calculator &copy; 2024</p>
+          <a 
+            href="/domitory-guide/TR2024-01_area_program_template.xlsx" 
+            className="inline-block mt-2 text-indigo-400 hover:text-indigo-600 underline decoration-indigo-200 underline-offset-2 transition-colors"
+          >
+            Download Reference Template (Excel)
+          </a>
         </div>
       </footer>
 
