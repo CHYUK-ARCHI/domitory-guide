@@ -243,7 +243,7 @@ function App() {
       {/* Footer */}
       <footer className="mt-auto py-8 bg-white border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-6 text-center text-sm text-gray-400">
-          <p>기숙사 면적산정 프로그램 &copy; 2024</p>
+          <p>기숙사 면적산정 프로그램 by Chan Hyuk, Kwon 2026</p>
           <a 
             href="/domitory-guide/TR2024-01_area_program_template.xlsx" 
             className="inline-block mt-2 text-indigo-400 hover:text-indigo-600 underline decoration-indigo-200 underline-offset-2 transition-colors"
