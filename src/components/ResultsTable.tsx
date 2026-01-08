@@ -136,16 +136,16 @@ export function ResultsTable({ data, referenceData = [] }: ResultsTableProps) {
       {/* Grand Total - Hierarchy Level 1 (Highest) */}
       <tfoot className="bg-slate-800 text-white border-t-4 border-slate-900 sticky bottom-0 z-10 shadow-lg">
         <tr>
-          <td className="px-6 py-5 text-center font-extrabold text-base border-r border-slate-700" colSpan={2}>
+          <td className="px-3 py-4 text-center font-extrabold text-base border-r border-slate-700" colSpan={3}>
             총 계 (연면적)
           </td>
-          <td className="px-6 py-5 text-right font-extrabold text-xl border-r border-slate-700 bg-slate-700/50 tracking-wide text-indigo-100">
+          <td className="px-2 py-4 text-right font-extrabold text-lg border-r border-slate-700 bg-slate-700/50 tracking-wide text-indigo-100">
             {totalCalc.toLocaleString(undefined, { maximumFractionDigits: 1 })}
           </td>
-          <td className="px-6 py-5 text-right font-bold text-lg border-r border-slate-700 text-gray-300">
+          <td className="px-2 py-4 text-right font-bold text-base border-r border-slate-700 text-gray-300">
             {totalRef.toLocaleString()}
           </td>
-          <td className={`px-6 py-5 text-right font-extrabold text-lg ${totalCalc - totalRef > 0 ? 'text-blue-300' : totalCalc - totalRef < 0 ? 'text-rose-300' : 'text-gray-400'}`}>
+          <td className={`px-2 py-4 text-right font-extrabold text-base ${totalCalc - totalRef > 0 ? 'text-blue-300' : totalCalc - totalRef < 0 ? 'text-rose-300' : 'text-gray-400'}`}>
             {totalCalc - totalRef > 0 ? '+' : ''}{(totalCalc - totalRef).toLocaleString(undefined, { maximumFractionDigits: 1 })}
           </td>
         </tr>
