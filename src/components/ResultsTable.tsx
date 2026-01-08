@@ -56,21 +56,21 @@ export function ResultsTable({ data, referenceData = [] }: ResultsTableProps) {
 
   return (
     <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm bg-white">
-      <table className="min-w-[700px] w-full divide-y divide-gray-200">
-        <col className="w-24" /> {/* Category */}
+      <table className="min-w-[500px] w-full divide-y divide-gray-200">
+        <col className="w-[10%]" /> {/* Category */}
         <col className="w-auto" /> {/* Details */}
-        <col className="w-20" /> {/* Units */}
-        <col className="w-24" /> {/* Calc */}
-        <col className="w-24" /> {/* Ref */}
-        <col className="w-24" /> {/* Diff */}
+        <col className="w-[10%]" /> {/* Units */}
+        <col className="w-[15%]" /> {/* Calc */}
+        <col className="w-[15%]" /> {/* Ref */}
+        <col className="w-[15%]" /> {/* Diff */}
         <thead className="bg-gray-50">
           <tr>
-            <th scope="col" className="px-3 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">구분</th>
-            <th scope="col" className="px-3 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">세부시설</th>
-            <th scope="col" className="px-3 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">개소/실</th>
-            <th scope="col" className="px-3 py-3 text-right text-xs font-semibold text-indigo-700 uppercase tracking-wider bg-indigo-50/50">계획면적</th>
-            <th scope="col" className="px-3 py-3 text-right text-xs font-semibold text-gray-400 uppercase tracking-wider">현상안</th>
-            <th scope="col" className="px-3 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">증감</th>
+            <th scope="col" className="px-1.5 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">구분</th>
+            <th scope="col" className="px-1.5 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">세부시설</th>
+            <th scope="col" className="px-1.5 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">개소/실</th>
+            <th scope="col" className="px-1.5 py-3 text-right text-xs font-semibold text-indigo-700 uppercase tracking-wider bg-indigo-50/50">계획면적</th>
+            <th scope="col" className="px-1.5 py-3 text-right text-xs font-semibold text-gray-400 uppercase tracking-wider">현상안</th>
+            <th scope="col" className="px-1.5 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">증감</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-200">
@@ -95,21 +95,21 @@ export function ResultsTable({ data, referenceData = [] }: ResultsTableProps) {
                     <tr key={`${category}-${space.name}`} className="hover:bg-gray-50 transition-colors">
                       {idx === 0 ? (
                         <td 
-                          className="px-3 py-4 whitespace-nowrap text-xs font-medium text-gray-900 bg-gray-50/50" 
+                          className="px-1.5 py-2 whitespace-nowrap text-xs font-medium text-gray-900 bg-gray-50/50" 
                           rowSpan={spaces.length + 1} // +1 for subtotal row
                         >
                           {category}
                         </td>
                       ) : null}
-                      <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-700">{space.name}</td>
-                      <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-500 text-right">{space.units.toLocaleString()}</td>
-                      <td className="px-3 py-4 whitespace-nowrap text-sm font-bold text-indigo-700 text-right bg-indigo-50/30">
+                      <td className="px-1.5 py-2 text-xs md:text-sm text-gray-700 break-words">{space.name}</td>
+                      <td className="px-1.5 py-2 whitespace-nowrap text-xs text-gray-500 text-right">{space.units.toLocaleString()}</td>
+                      <td className="px-1.5 py-2 whitespace-nowrap text-xs font-bold text-indigo-700 text-right bg-indigo-50/30">
                         {space.area.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}
                       </td>
-                      <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-400 text-right">
+                      <td className="px-1.5 py-2 whitespace-nowrap text-xs text-gray-400 text-right">
                         {hasRef ? refArea.toLocaleString() : '-'}
                       </td>
-                      <td className={`px-6 py-3 whitespace-nowrap text-sm text-right font-semibold ${
+                      <td className={`px-1.5 py-2 whitespace-nowrap text-xs text-right font-semibold ${
                     !refArea ? 'text-gray-300' : diff > 0 ? 'text-blue-600' : diff < 0 ? 'text-rose-600' : 'text-gray-400'
                   }`}>
                     {refArea ? (diff > 0 ? `+${diff.toLocaleString()}` : diff.toLocaleString()) : '-'}
@@ -120,17 +120,17 @@ export function ResultsTable({ data, referenceData = [] }: ResultsTableProps) {
             
             {/* Subtotal Row - Hierarchy Level 2 */}
             <tr className="bg-indigo-50/60 border-t-2 border-indigo-100">
-              <td className="px-6 py-3 text-left text-indigo-900 font-bold border-r border-gray-200 pl-8 text-sm">
+              <td className="px-1.5 py-2 text-left text-indigo-900 font-bold border-r border-gray-200 pl-4 text-xs">
                 소계
               </td>
-              <td className="px-6 py-3 text-center text-indigo-900 border-r border-gray-200">-</td>
-              <td className="px-6 py-3 text-right text-indigo-800 font-bold text-sm border-r border-gray-200 bg-indigo-50">
+              <td className="px-1.5 py-2 text-center text-indigo-900 border-r border-gray-200">-</td>
+              <td className="px-1.5 py-2 text-right text-indigo-800 font-bold text-xs border-r border-gray-200 bg-indigo-50">
                 {catCalcSum.toLocaleString(undefined, { maximumFractionDigits: 1 })}
               </td>
-              <td className="px-6 py-3 text-right text-gray-800 font-medium text-sm bg-gray-50/50 border-r border-gray-200">
+              <td className="px-1.5 py-2 text-right text-gray-800 font-medium text-xs bg-gray-50/50 border-r border-gray-200">
                 {catRefSum.toLocaleString()}
               </td>
-              <td className={`px-6 py-3 text-right text-sm font-bold ${catDiff > 0 ? 'text-blue-700' : catDiff < 0 ? 'text-rose-700' : 'text-gray-400'}`}>
+              <td className={`px-1.5 py-2 text-right text-xs font-bold ${catDiff > 0 ? 'text-blue-700' : catDiff < 0 ? 'text-rose-700' : 'text-gray-400'}`}>
                 {catDiff > 0 ? '+' : ''}{catDiff.toLocaleString(undefined, { maximumFractionDigits: 1 })}
               </td>
             </tr>
@@ -142,16 +142,16 @@ export function ResultsTable({ data, referenceData = [] }: ResultsTableProps) {
       {/* Grand Total - Hierarchy Level 1 (Highest) */}
       <tfoot className="bg-slate-800 text-white border-t-4 border-slate-900 sticky bottom-0 z-10 shadow-lg">
         <tr>
-          <td className="px-3 py-4 text-center font-extrabold text-base border-r border-slate-700" colSpan={3}>
+          <td className="px-2 py-3 text-center font-extrabold text-sm border-r border-slate-700" colSpan={3}>
             총 계 (연면적)
           </td>
-          <td className="px-2 py-4 text-right font-extrabold text-lg border-r border-slate-700 bg-slate-700/50 tracking-wide text-indigo-100">
+          <td className="px-2 py-3 text-right font-extrabold text-base border-r border-slate-700 bg-slate-700/50 tracking-wide text-indigo-100">
             {totalCalc.toLocaleString(undefined, { maximumFractionDigits: 1 })}
           </td>
-          <td className="px-2 py-4 text-right font-bold text-base border-r border-slate-700 text-gray-300">
+          <td className="px-2 py-3 text-right font-bold text-sm border-r border-slate-700 text-gray-300">
             {totalRef.toLocaleString()}
           </td>
-          <td className={`px-2 py-4 text-right font-extrabold text-base ${totalCalc - totalRef > 0 ? 'text-blue-300' : totalCalc - totalRef < 0 ? 'text-rose-300' : 'text-gray-400'}`}>
+          <td className={`px-2 py-3 text-right font-extrabold text-sm ${totalCalc - totalRef > 0 ? 'text-blue-300' : totalCalc - totalRef < 0 ? 'text-rose-300' : 'text-gray-400'}`}>
             {totalCalc - totalRef > 0 ? '+' : ''}{(totalCalc - totalRef).toLocaleString(undefined, { maximumFractionDigits: 1 })}
           </td>
         </tr>
