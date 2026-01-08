@@ -103,51 +103,53 @@ export function ResultsTable({ data, referenceData = [] }: ResultsTableProps) {
                       <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-400 text-right">
                         {hasRef ? refArea.toLocaleString() : '-'}
                       </td>
-                      <td className={`px-3 py-4 whitespace-nowrap text-sm font-medium text-right ${
-                        !hasRef ? 'text-gray-300' : diff > 0 ? 'text-blue-600' : diff < 0 ? 'text-red-500' : 'text-gray-400'
-                      }`}>
-                        {hasRef ? (diff > 0 ? `+${diff.toLocaleString(undefined, { maximumFractionDigits: 1 })}` : diff.toLocaleString(undefined, { maximumFractionDigits: 1 })) : '-'}
-                      </td>
-                    </tr>
-                  );
-                })}
-                {/* Subtotal Row */}
-                <tr className="bg-indigo-50 font-bold border-t-2 border-indigo-100">
-                  <td className="px-6 py-3 text-left text-indigo-900 border-r border-gray-200 pl-8">
-                    소계
-                  </td>
-                  <td className="px-6 py-3 text-center text-indigo-900 border-r border-gray-200">-</td>
-                  <td className="px-6 py-3 text-right text-indigo-700 font-bold text-lg border-r border-gray-200 bg-indigo-50/50">
-                    {catCalcSum.toLocaleString(undefined, { maximumFractionDigits: 1 })}
-                  </td>
-                  <td className="px-6 py-3 text-right text-gray-700 bg-gray-50/50 border-r border-gray-200">
-                    {catRefSum.toLocaleString()}
-                  </td>
-                  <td className={`px-6 py-3 text-right font-medium ${catDiff > 0 ? 'text-blue-600' : catDiff < 0 ? 'text-rose-600' : 'text-gray-400'}`}>
-                    {catDiff > 0 ? '+' : ''}{catDiff.toLocaleString(undefined, { maximumFractionDigits: 1 })}
+                      <td className={`px-6 py-3 whitespace-nowrap text-sm text-right font-semibold ${
+                    !refArea ? 'text-gray-300' : diff > 0 ? 'text-blue-600' : diff < 0 ? 'text-rose-600' : 'text-gray-400'
+                  }`}>
+                    {refArea ? (diff > 0 ? `+${diff.toLocaleString()}` : diff.toLocaleString()) : '-'}
                   </td>
                 </tr>
-              </>
-            );
-          })}
-          
-          {/* Grand Total Row */}
-          <tr className="bg-gray-800 text-white font-bold border-t-4 border-gray-600">
-            <td className="px-3 py-4 whitespace-nowrap text-sm text-center" colSpan={3}>총 계 (연면적)</td>
-            <td className="px-3 py-4 whitespace-nowrap text-sm text-right bg-indigo-900/50">
-              {totalCalc.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}
-            </td>
-            <td className="px-3 py-4 whitespace-nowrap text-sm text-right text-gray-300">
-              {totalRef.toLocaleString()}
-            </td>
-            <td className={`px-3 py-4 whitespace-nowrap text-sm text-right ${
-              (totalCalc - totalRef) > 0 ? 'text-blue-300' : (totalCalc - totalRef) < 0 ? 'text-red-300' : 'text-gray-400'
-            }`}>
-              {(totalCalc - totalRef) > 0 ? `+${(totalCalc - totalRef).toLocaleString(undefined, { maximumFractionDigits: 1 })}` : (totalCalc - totalRef).toLocaleString(undefined, { maximumFractionDigits: 1 })}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              );
+            })}
+            
+            {/* Subtotal Row - Hierarchy Level 2 */}
+            <tr className="bg-indigo-50/60 border-t-2 border-indigo-100">
+              <td className="px-6 py-3 text-left text-indigo-900 font-bold border-r border-gray-200 pl-8">
+                소계
+              </td>
+              <td className="px-6 py-3 text-center text-indigo-900 border-r border-gray-200">-</td>
+              <td className="px-6 py-3 text-right text-indigo-800 font-bold text-base border-r border-gray-200 bg-indigo-50">
+                {catCalcSum.toLocaleString(undefined, { maximumFractionDigits: 1 })}
+              </td>
+              <td className="px-6 py-3 text-right text-gray-800 font-medium text-base bg-gray-50/50 border-r border-gray-200">
+                {catRefSum.toLocaleString()}
+              </td>
+              <td className={`px-6 py-3 text-right text-base font-bold ${catDiff > 0 ? 'text-blue-700' : catDiff < 0 ? 'text-rose-700' : 'text-gray-400'}`}>
+                {catDiff > 0 ? '+' : ''}{catDiff.toLocaleString(undefined, { maximumFractionDigits: 1 })}
+              </td>
+            </tr>
+          </>
+        ))}
+      </tbody>
+      
+      {/* Grand Total - Hierarchy Level 1 (Highest) */}
+      <tfoot className="bg-slate-800 text-white border-t-4 border-slate-900 sticky bottom-0 z-10 shadow-lg">
+        <tr>
+          <td className="px-6 py-5 text-center font-extrabold text-lg border-r border-slate-700" colSpan={2}>
+            총 계 (연면적)
+          </td>
+          <td className="px-6 py-5 text-right font-extrabold text-2xl border-r border-slate-700 bg-slate-700/50 tracking-wide text-indigo-100">
+            {totalCalc.toLocaleString(undefined, { maximumFractionDigits: 1 })}
+          </td>
+          <td className="px-6 py-5 text-right font-bold text-xl border-r border-slate-700 text-gray-300">
+            {totalRef.toLocaleString()}
+          </td>
+          <td className={`px-6 py-5 text-right font-extrabold text-xl ${totalCalc - totalRef > 0 ? 'text-blue-300' : totalCalc - totalRef < 0 ? 'text-rose-300' : 'text-gray-400'}`}>
+            {totalCalc - totalRef > 0 ? '+' : ''}{(totalCalc - totalRef).toLocaleString(undefined, { maximumFractionDigits: 1 })}
+          </td>
+        </tr>
+      </tfoot>
+    </table>
     </div>
   );
 }
