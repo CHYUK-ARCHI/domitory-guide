@@ -113,21 +113,19 @@ export function ResultsTable({ data, referenceData = [] }: ResultsTableProps) {
                   );
                 })}
                 {/* Subtotal Row */}
-                <tr className="bg-gray-100 font-bold border-t-2 border-gray-200">
-                  <td className="px-3 py-3 whitespace-nowrap text-xs text-gray-700 text-right">
-                    {category === '공용공간' ? '소계 (E/V홀, 복도, 계단실, 공용 화장실, 기계실 등)' : '소계'}
+                <tr className="bg-indigo-50 font-bold border-t-2 border-indigo-100">
+                  <td className="px-6 py-3 text-left text-indigo-900 border-r border-gray-200 pl-8">
+                    소계
                   </td>
-                  <td className="px-3 py-3 whitespace-nowrap text-xs text-gray-500 text-right">-</td>
-                  <td className="px-3 py-3 whitespace-nowrap text-xs text-indigo-800 text-right bg-indigo-100/50">
-                    {catCalcSum.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}
+                  <td className="px-6 py-3 text-center text-indigo-900 border-r border-gray-200">-</td>
+                  <td className="px-6 py-3 text-right text-indigo-700 font-bold text-lg border-r border-gray-200 bg-indigo-50/50">
+                    {catCalcSum.toLocaleString(undefined, { maximumFractionDigits: 1 })}
                   </td>
-                  <td className="px-3 py-3 whitespace-nowrap text-xs text-gray-600 text-right">
-                    {hasCatRef ? catRefSum.toLocaleString() : '-'}
+                  <td className="px-6 py-3 text-right text-gray-700 bg-gray-50/50 border-r border-gray-200">
+                    {catRefSum.toLocaleString()}
                   </td>
-                  <td className={`px-3 py-3 whitespace-nowrap text-xs text-right ${
-                    !hasCatRef ? 'text-gray-400' : catDiff > 0 ? 'text-blue-700' : catDiff < 0 ? 'text-red-600' : 'text-gray-500'
-                  }`}>
-                     {hasCatRef ? (catDiff > 0 ? `+${catDiff.toLocaleString(undefined, { maximumFractionDigits: 1 })}` : catDiff.toLocaleString(undefined, { maximumFractionDigits: 1 })) : '-'}
+                  <td className={`px-6 py-3 text-right font-medium ${catDiff > 0 ? 'text-blue-600' : catDiff < 0 ? 'text-rose-600' : 'text-gray-400'}`}>
+                    {catDiff > 0 ? '+' : ''}{catDiff.toLocaleString(undefined, { maximumFractionDigits: 1 })}
                   </td>
                 </tr>
               </>
