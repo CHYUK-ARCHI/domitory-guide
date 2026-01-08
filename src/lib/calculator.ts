@@ -129,3 +129,30 @@ export function calculateArea(residents: number, mode: CalculationMode): Calcula
     areaPerPerson: grossArea / residents
   };
 }
+
+export function calculateResidents(targetGrossArea: number, mode: CalculationMode): number {
+  let low = 0;
+  let high = 10000;
+  let bestResidents = 0;
+
+  // Binary search to find residents count that produces grossArea <= targetGrossArea
+  // actually we want "approximate" match, usually closest <= target or just closest.
+  // Given we want to know "how many people possible", usually means max people where area <= limit.
+  // But let's find the closest match for better UX, or max <= target.
+  // Requirement: "연면적을 쓰면 어느정도 인원이 가능한지 계산" -> How many people possible? 
+  // Safest is max residents where calculatedGross <= targetGrossArea.
+
+  while (low <= high) {
+    const mid = Math.floor((low + high) / 2);
+    const result = calculateArea(mid, mode);
+
+    if (result.grossArea <= targetGrossArea) {
+      bestResidents = mid; // This is a valid candidate
+      low = mid + 1; // Try to find more residents
+    } else {
+      high = mid - 1; // Too much area, reduce residents
+    }
+  }
+
+  return bestResidents;
+}
