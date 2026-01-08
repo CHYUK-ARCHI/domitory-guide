@@ -73,7 +73,6 @@ export function ResultsTable({ data, referenceData = [] }: ResultsTableProps) {
             const catCalcSum = spaces.reduce((sum, s) => sum + s.area, 0);
             const catRefSum = spaces.reduce((sum, s) => sum + getRefArea(category, s.name), 0);
             const catDiff = catCalcSum - catRefSum;
-            const hasCatRef = catRefSum > 0;
 
             // Accumulate to Grand Total
             totalCalc += catCalcSum;
