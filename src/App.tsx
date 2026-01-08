@@ -106,9 +106,9 @@ function App() {
                   </span>
                 </div>
               </div>
-              <p className="text-xs text-gray-500 font-medium ml-1">
+                <p className="text-sm font-bold text-indigo-700 ml-1">
                 {isReverseMode 
-                  ? `가능 수용 인원: ${effectiveResidents}명` 
+                  ? `수용가능인원: ${effectiveResidents}명` 
                   : '일반적인 범위: 100 - 1400명'}
               </p>
             </div>
@@ -203,7 +203,18 @@ function App() {
             {/* Left Column: Calculation Results */}
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-gray-800">산출된 면적 프로그램</h3>
-              <ResultsTable data={result.spaces} referenceData={REFERENCE_DATA} />
+              <ResultsTable 
+                data={[
+                  ...result.spaces,
+                  {
+                    category: '공용공간',
+                    name: '공용면적 (복도, 계단, E/V 등)',
+                    area: result.sharedArea,
+                    units: 1
+                  }
+                ]} 
+                referenceData={REFERENCE_DATA} 
+              />
             </div>
 
             {/* Right Column: Reference Data & Image */}
@@ -213,16 +224,15 @@ function App() {
               {/* Reference Data Table */}
               <ReferenceTable data={REFERENCE_DATA} />
 
-              {/* Original Image Accordion/Display */}
+              {/* Guidelines / Notes */}
               <div className="mt-6 pt-6 border-t border-gray-200">
-                <h4 className="text-sm font-medium text-gray-500 mb-3">원본 이미지 확인</h4>
-                <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden p-2">
-                  <img 
-                    src="/area_table_reference.png" 
-                    alt="Design Proposal Area Table" 
-                    className="w-full h-auto object-contain rounded-lg hover:opacity-100 transition-opacity"
-                  />
-                </div>
+                <h4 className="text-sm font-bold text-gray-800 mb-2">※ 설계 지침 사항</h4>
+                <ul className="text-xs text-gray-600 space-y-1.5 leading-relaxed">
+                  <li>※ 지상층 연면적은 +3%이내에서 변경 허용하며, 지하층 연면적은 제시 면적 이하로 계획한다.</li>
+                  <li>※ 건물 층수와 공간 배치(안)은 설계자의 의도 및 계획에 따라 일부 조정 할 수 있다.</li>
+                  <li>※ 제공된 면적 중 법적기준을 제외한 면적은 계획에 따라 일부 조정 할 수 있다.</li>
+                  <li>※ 층에 대한 권장사항도 설계자의 의도 및 기능 등 필요에 따라 층별 이동이 가능하다.</li>
+                </ul>
               </div>
             </div>
           </div>

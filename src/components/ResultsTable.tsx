@@ -16,12 +16,13 @@ export function ResultsTable({ data, referenceData = [] }: ResultsTableProps) {
 
   // Mapping for Calculated Name -> Reference Items (sum them up)
   const REF_MAPPING: Record<string, string[]> = {
-    '스터디라운지': ['층별 스터디룸 및 휴게라운지', '로비 및 라운지'],
+    '스터디라운지': ['층별 스터디룸 및 휴게라운지', '로비 및 라운지', '휴게라운지(지하)', '특화프로그램 제안1'],
     '공유주방': ['층별 미니주방'],
     '공동세탁실': ['공동세탁실 및 건조실'],
     '체력단련실': ['체력단련실'], // Direct match now
     '짐·택배 통합보관실': ['택배보관실', '프린터실', '기도실'],
     '행정라운지': ['관리행정공간 (소계)'],
+    '공용면적 (복도, 계단, E/V 등)': ['E/V홀, 화장실, 계단실 등', '기계·전기실 등'],
     '경비실': [], // Assume part of admin or separate? Left empty, means 0 ref.
     '당직실': [],
     '근로자휴게실': [],
