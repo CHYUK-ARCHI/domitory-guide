@@ -129,7 +129,8 @@ export function ResultsTable({ data, referenceData = [] }: ResultsTableProps) {
               </td>
             </tr>
           </>
-        ))}
+        );
+      })}
       </tbody>
       
       {/* Grand Total - Hierarchy Level 1 (Highest) */}
