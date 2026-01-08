@@ -3,6 +3,7 @@ import { calculateArea, calculateResidents, type CalculationMode } from "./lib/c
 import { REFERENCE_DATA } from "./lib/referenceData";
 import { SummaryCard } from "./components/SummaryCard";
 import { ResultsTable } from "./components/ResultsTable";
+import { ReferenceTable } from "./components/ReferenceTable";
 
 function App() {
   const [residents, setResidents] = useState<number>(800);
@@ -205,15 +206,23 @@ function App() {
               <ResultsTable data={result.spaces} referenceData={REFERENCE_DATA} />
             </div>
 
-            {/* Right Column: Reference Image */}
+            {/* Right Column: Reference Data & Image */}
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-gray-800">현상계획안 면적표 (참고자료)</h3>
-              <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden p-4">
-                <img 
-                  src="/area_table_reference.png" 
-                  alt="Design Proposal Area Table" 
-                  className="w-full h-auto object-contain rounded-lg"
-                />
+              
+              {/* Reference Data Table */}
+              <ReferenceTable data={REFERENCE_DATA} />
+
+              {/* Original Image Accordion/Display */}
+              <div className="mt-6 pt-6 border-t border-gray-200">
+                <h4 className="text-sm font-medium text-gray-500 mb-3">원본 이미지 확인</h4>
+                <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden p-2">
+                  <img 
+                    src="/area_table_reference.png" 
+                    alt="Design Proposal Area Table" 
+                    className="w-full h-auto object-contain rounded-lg hover:opacity-100 transition-opacity"
+                  />
+                </div>
               </div>
             </div>
           </div>

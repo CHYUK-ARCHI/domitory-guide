@@ -146,7 +146,8 @@ export function calculateResidents(targetGrossArea: number, mode: CalculationMod
     const mid = Math.floor((low + high) / 2);
     const result = calculateArea(mid, mode);
 
-    if (result.grossArea <= targetGrossArea) {
+    // Allow +3% tolerance (user goal: target area can support slightly more people)
+    if (result.grossArea <= targetGrossArea * 1.03) {
       bestResidents = mid; // This is a valid candidate
       low = mid + 1; // Try to find more residents
     } else {
