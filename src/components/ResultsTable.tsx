@@ -55,8 +55,14 @@ export function ResultsTable({ data, referenceData = [] }: ResultsTableProps) {
   let totalRef = 0;
 
   return (
-    <div className="overflow-hidden rounded-xl border border-gray-200 shadow-sm bg-white">
-      <table className="min-w-full divide-y divide-gray-200">
+    <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm bg-white">
+      <table className="min-w-[700px] w-full divide-y divide-gray-200">
+        <col className="w-24" /> {/* Category */}
+        <col className="w-auto" /> {/* Details */}
+        <col className="w-20" /> {/* Units */}
+        <col className="w-24" /> {/* Calc */}
+        <col className="w-24" /> {/* Ref */}
+        <col className="w-24" /> {/* Diff */}
         <thead className="bg-gray-50">
           <tr>
             <th scope="col" className="px-3 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">구분</th>
